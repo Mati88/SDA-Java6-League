@@ -30,7 +30,6 @@ public class MatchReader {
         List<Player> hostScores = determineScores(lines.stream(), "host-score:");
         List<Player> guestScores = determineScores(lines.stream(), "guest-score:");
 
-
         return new Match(teams.get(hostName), hostScores, teams.get(guestName), guestScores);
     }
 
