@@ -1,5 +1,6 @@
 package com.kchmielewski.sda.java6.league.reader;
 
+import com.kchmielewski.sda.java6.league.model.Player;
 import com.kchmielewski.sda.java6.league.model.Team;
 
 import java.io.BufferedReader;
@@ -15,7 +16,7 @@ public class BufferedTeamReader extends AbstractTeamReader {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
             while (line != null) {
-                team.addPlayer(lineToPlayer(line));
+                team.addPlayer(Player.fromLine(line));
                 line = reader.readLine();
             }
         }

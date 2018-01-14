@@ -17,6 +17,11 @@ public class Player {
         this.surname = surname;
     }
 
+    public static Player fromLine(String line) {
+        String[] data = line.split(";");
+        return new Player(data[0], data[1]);
+    }
+
     public String getName() {
         return name;
     }

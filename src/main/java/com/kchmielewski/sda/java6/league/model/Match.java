@@ -45,7 +45,7 @@ public class Match {
         return result;
     }
 
-    enum Result {
+    public enum Result {
         HOST, GUEST, DRAW
     }
 }

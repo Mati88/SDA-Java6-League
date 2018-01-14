@@ -1,5 +1,6 @@
 package com.kchmielewski.sda.java6.league.reader;
 
+import com.kchmielewski.sda.java6.league.model.Player;
 import com.kchmielewski.sda.java6.league.model.Team;
 
 import java.io.File;
@@ -15,7 +16,7 @@ public class LinesTeamReader extends AbstractTeamReader {
         Team team = createTeam(file);
         List<String> lines = Files.readAllLines(Paths.get(path));
         for (String line : lines) {
-            team.addPlayer(lineToPlayer(line));
+            team.addPlayer(Player.fromLine(line));
         }
 
         return team;

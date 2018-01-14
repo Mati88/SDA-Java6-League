@@ -1,5 +1,6 @@
 package com.kchmielewski.sda.java6.league.reader;
 
+import com.kchmielewski.sda.java6.league.model.Player;
 import com.kchmielewski.sda.java6.league.model.Team;
 
 import java.io.File;
@@ -12,7 +13,7 @@ public class StreamTeamReader extends AbstractTeamReader {
     public Team read(String path) throws IOException {
         File file = getFile(path);
         Team team = createTeam(file);
-        Files.lines(Paths.get(path)).map(this::lineToPlayer).forEach(team::addPlayer);
+        Files.lines(Paths.get(path)).map(Player::fromLine).forEach(team::addPlayer);
 
         return team;
     }
