@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.kchmielewski.sda.java6.league.model.Match;
 import com.kchmielewski.sda.java6.league.model.Player;
 import com.kchmielewski.sda.java6.league.model.Team;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;

@@ -4,14 +4,11 @@ import com.kchmielewski.sda.java6.league.model.Match;
 import com.kchmielewski.sda.java6.league.model.Player;
 import com.kchmielewski.sda.java6.league.model.Team;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,7 +31,7 @@ public class MatchReader {
     }
 
     private String determineTeamName(Stream<String> lines, String prefix) {
-        return  lines.filter(p -> p.startsWith(prefix))
+        return lines.filter(p -> p.startsWith(prefix))
                 .map(l -> l.replace(prefix, ""))
                 .findFirst().orElseThrow(IllegalArgumentException::new);
     }

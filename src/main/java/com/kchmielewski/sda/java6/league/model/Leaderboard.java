@@ -1,8 +1,10 @@
 package com.kchmielewski.sda.java6.league.model;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -10,6 +12,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 public class Leaderboard {
     private final Map<String, Team> teams = new HashMap<>();
     private final Map<Team, LeaderboardResult> results = new HashMap<>();
+    private final Map<Player, Long> goals = new HashMap<>();
 
     public void addTeam(Team team) {
         checkArgument(!teams.containsKey(team.getName()), "Cannot add %s team again.", team.getName());
@@ -19,10 +22,17 @@ public class Leaderboard {
 
     public void addMatch(Match match) {
         updateResults(match);
+        updateGoals(match.getHostScores());
+        updateGoals(match.getGuestScores());
     }
 
     public List<LeaderboardResult> describe() {
         return results.values().stream().sorted().collect(Collectors.toList());
+    }
+
+    public Map<Player, Long> getGoals() {
+        return goals.entrySet().stream().sorted(Comparator.comparingLong(Map.Entry::getValue))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     private TeamResult determineResult(Team team, Match match) {
@@ -44,6 +54,18 @@ public class Leaderboard {
         LeaderboardResult guestLeaderboardResult = results.get(match.getGuest());
         results.put(match.getHost(), hostLeaderboardResult.from(host, match.getHostScores().size(), match.getGuestScores().size()));
         results.put(match.getGuest(), guestLeaderboardResult.from(guest, match.getGuestScores().size(), match.getHostScores().size()));
+    }
+
+
+    private void updateGoals(List<Player> matchScores) {
+        Map<Player, Long> scores = matchScores.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        scores.forEach((k, v) -> {
+            if (goals.containsKey(k)) {
+                goals.put(k, goals.get(k) + v);
+            } else {
+                goals.put(k, v);
+            }
+        });
     }
 
     private enum TeamResult {
