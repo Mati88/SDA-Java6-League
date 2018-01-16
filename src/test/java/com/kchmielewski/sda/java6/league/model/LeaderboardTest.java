@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -71,12 +70,12 @@ public class LeaderboardTest {
         leaderboard.addMatch(new Match(firstTeam, Arrays.asList(firstPlayer, firstPlayer), secondTeam, Collections.singletonList(secondPlayer)));
         leaderboard.addMatch(new Match(firstTeam, Collections.singletonList(firstPlayer), secondTeam, Collections.singletonList(secondPlayer)));
 
-        Map<Player, Long> result = leaderboard.getGoals();
+        List<Leaderboard.Goal> result = leaderboard.getGoals();
 
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(result.size()).isEqualTo(2);
-        softly.assertThat(result.get(firstPlayer)).isEqualTo(3);
-        softly.assertThat(result.get(secondPlayer)).isEqualTo(2);
+        softly.assertThat(result.get(0).getGoals()).isEqualByComparingTo(3L);
+        softly.assertThat(result.get(1).getGoals()).isEqualByComparingTo(2L);
         softly.assertAll();
     }
 }

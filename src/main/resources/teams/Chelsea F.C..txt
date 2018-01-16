@@ -1,0 +1,5 @@
+Eden;Hazard
+Álvaro;Morata
+David;Luiz
+Danny;Drinkwater
+Thibaut;Courtois

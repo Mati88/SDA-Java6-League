@@ -1,0 +1,9 @@
+host:Arsenal F.C.
+guest:Manchester United F.C.
+guest-score:Henrich;Mychitarian
+guest-score:Henrich;Mychitarian
+guest-score:Henrich;Mychitarian
+host-score:Olivier;Giroud
+host-score:Aaron;Ramsey
+host-score:Olivier;Giroud
+guest-score:Juan;Mata

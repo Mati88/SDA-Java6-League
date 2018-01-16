@@ -30,9 +30,13 @@ public class Leaderboard {
         return results.values().stream().sorted().collect(Collectors.toList());
     }
 
-    public Map<Player, Long> getGoals() {
-        return goals.entrySet().stream().sorted(Comparator.comparingLong(Map.Entry::getValue))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    public List<Goal> getGoals() {
+        return goals.entrySet().stream().map(e -> new Goal(e.getKey(), e.getValue()))
+                .sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+    }
+
+    public Map<String, Team> getTeams() {
+        return teams;
     }
 
     private TeamResult determineResult(Team team, Match match) {
@@ -70,6 +74,30 @@ public class Leaderboard {
 
     private enum TeamResult {
         WIN, DRAW, LOSE
+    }
+
+    public static class Goal implements Comparable<Goal> {
+        private final Player player;
+        private final long goals;
+
+        private Goal(Player player, long goals) {
+            this.player = player;
+            this.goals = goals;
+        }
+
+        public long getGoals() {
+            return goals;
+        }
+
+        @Override
+        public int compareTo(Goal o) {
+            return (int) (o.goals - goals);
+        }
+
+        @Override
+        public String toString() {
+            return player + "=" + goals;
+        }
     }
 
     public static class LeaderboardResult implements Comparable<LeaderboardResult> {
