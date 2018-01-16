@@ -32,7 +32,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{name='" + name + "', surname='" + surname + "'}";
+        return name + " " + surname;
     }
 
     @Override

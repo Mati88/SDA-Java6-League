@@ -38,7 +38,7 @@ public class Main {
             }
         }).filter(Objects::nonNull).forEach(premierLeague::addMatch);
 
-        System.out.println(premierLeague.getGoals());
-        System.out.println(premierLeague.describe());
+        premierLeague.describe().forEach(System.out::println);
+        premierLeague.getGoals().forEach(System.out::println);
     }
 }

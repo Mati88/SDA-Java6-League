@@ -160,7 +160,7 @@ public class Leaderboard {
 
         @Override
         public String toString() {
-            return String.format("%s, %s (%s-%s-%s), %s/%s", teamName, points, wins, draws, loses, goals, goalsLost);
+            return String.format("%s %s (%s-%s-%s), %s/%s", teamName, points, wins, draws, loses, goals, goalsLost);
         }
 
         @Override
