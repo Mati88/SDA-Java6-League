@@ -9,7 +9,7 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class AbstractTeamReaderTest {
+public abstract class AbstractTeamReaderTest {
     private final TeamReader teamReader;
 
     AbstractTeamReaderTest(TeamReader teamReader) {
